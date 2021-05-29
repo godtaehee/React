@@ -5,8 +5,14 @@ import './App.css';
 function App() {
 
 
-  const list = [...Array(100).keys()];
 
+  const titleArr = ["AlbalogClient", "AlbalogServer", "AndroidStudioProjects", "Applications", "CLionProjects", "Canvas3dSphere", "Desktop", "Documents", "Downloads", "IdeaProjects", "Library", "Linux", "Movies", "Music", "New", "Unity", "Project", "PhpstormProjects", "Pictures", "Postman", "Project", "Projects", "Public", "PycharmProjects", "Python3", "RiderProjects", "Stardy", "UnityProject", "WebProject", "WebstormProjects", "alba", "arsd", "arsd-1", "bank-front", "eclipse", "eclipse-workspace", "firstNode", "git", "git-exer", "github", "go", "intellij-soapui-workspace.xml", "jetbrains", "just", "ko.javascript.info", "lecture-react", "nananana", "newlec", "onlytest", "other", "reac", "react", "reactReal", "real", "rm", "secondNode", "soapui-settings.xml", "test", "yoon"];
+
+  const listArr = [...Array(titleArr.length).fill(0)];
+
+  const [title, titleFunc] = useState(titleArr);
+  const [list, listFunc] = useState(listArr);
+  
   return (
     <div className="App">
       <div className="navs">
@@ -14,23 +20,27 @@ function App() {
       </div>
 
 
-      {
-        list.map((value, idx) => {
-          value+=1;
-          return (
-            <div className="list">
-              <h3>
-                {
-                  value
-                }
-              </h3>
-              <h3>{idx}</h3>
-              <p>2dnjf 18dlfqkftod</p>
-              <hr/>
-            </div>
-          )
-        }) 
-      }
+    {
+      titleArr.map((val, idx) => {
+        return (
+          <div className="title">
+            <h3>{val} <span onClick={
+              () => {
+                const newArr = [...list];
+                console.log(newArr);
+                newArr[idx] +=1;
+                listFunc(newArr);
+              }
+            }>😂</span></h3> {list[idx]}
+            <p>본문입니다.</p>
+          </div>
+        )
+      })
+    }
+
+    {
+      list
+    }
 
 
 
