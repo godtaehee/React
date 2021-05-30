@@ -7,8 +7,12 @@ function App() {
   const [content, contentFunc] = useState(['강남역은 쩐다.', '역삼역이 더 쩐다.', '잠실 석촌호수 가 더쩐다.']);
   const [isModal, isModalFunc] = useState(false);
   const [tmp, tmpFunc] = useState("");
+  const [change, changeFunc] = useState("");
+  const [changeContent, changeContentFunc] = useState("");
   return (
     <div className="App">
+      {console.log(title)}
+      {console.log(content)}
       {
           title.map(function(val, idx) {
             console.log('gd');
@@ -21,11 +25,49 @@ function App() {
         <div className="content"> 
           {tmp[1]}
         </div>
+
+        <div className="write">
+          <div>
+          <input type="text" className="title" onChange={
+            (e) => {
+              changeFunc(e.target.value);
+            }
+          }/>
+
+          </div>
+          <input type="text" className="content" onChange={
+            (e) => {
+              changeContentFunc(e.target.value);
+            }
+          }/>
+          <input type="submit" onClick={
+            (e) => {
+
+              const newTitle = [...title];
+              const newContent = [...content];
+              newTitle.unshift(change);
+              newContent.unshift(changeContent);
+                titleFunc(newTitle);
+                contentFunc(newContent);
+            }
+          }/>
+        </div>
       </div>
-
-
     </div>
   );
+}
+
+function Board(obj) {
+  return (
+    <div className="list">
+    <div className="title">
+      {obj.props.title[obj.props.idx]}
+      안녕
+    
+    </div>
+    {obj.props.content[obj.props.idx]}
+  </div>
+  )
 }
 
 function List(obj) {
@@ -47,7 +89,6 @@ function List(obj) {
       </div>
       {obj.props.content[obj.props.idx]}
     </div>
-    
   )
 
 }
